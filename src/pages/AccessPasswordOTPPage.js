@@ -9,23 +9,25 @@ export const AccessPasswordOTPPage = () => {
   let navigate = useNavigate();
   const [code, setCode] = useState('');
   const [generateCode, setGenerateCode] = useState('');
-
+  const login = localStorage.getItem('login');
+  const password = localStorage.getItem('password');
 
   const generateOTP = () => {
-    let codeOTP = '';
-    for (let i = 0; i < 4; i++) {
-      let num = ~~(Math.random() * 10);
-      codeOTP += num.toString();
-    }
-    alert(codeOTP);
-    setGenerateCode(codeOTP);
+    setTimeout(() => {
+      let codeOTP = '';
+      for (let i = 0; i < 4; i++) {
+        let num = ~~(Math.random() * 10);
+        codeOTP += num.toString();
+      }
+      alert(codeOTP);
+      setGenerateCode(codeOTP);
+    }, 1000)
   };
 
-  useEffect(() => {
 
-    setTimeout(() => {
-      generateOTP();
-    }, 1000)
+  useEffect(() => {
+    if (!login && !password) return;
+    generateOTP();
   }, [])
 
   const auth = () => {
@@ -52,6 +54,8 @@ export const AccessPasswordOTPPage = () => {
 
 const style = {
   area: {
+    background: 'url(./../assets/background-auth.jpg)',
+    backgroundSize: 'cover',
     display: 'flex',
     height: '100vh',
     flexDirection: 'column',

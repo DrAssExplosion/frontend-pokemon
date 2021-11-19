@@ -1,0 +1,21 @@
+.leftMenu {
+    width: 312px;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+} 
+
+
+
+@media screen and (max-width: 720px) {
+    .leftMenu {
+        width: 312px;
+        padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: center;
+    }
+}

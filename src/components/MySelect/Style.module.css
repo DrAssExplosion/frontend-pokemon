@@ -1,0 +1,39 @@
+.select {
+    margin-bottom: 68px;;
+}
+.select select:focus-visible {
+    outline-color: #D5D5D5;
+}
+.select select {
+    display: block;
+    width: 100%; /* от ширины блока div */
+    padding: 0.75rem 2.5rem 0.75rem 1rem; /* отступы от текста до рамки */
+    background: none; /* убираем фон */
+    border: 1px solid #ccc; /* рамка */
+    border-radius: 3px; /* скругление полей формы */
+    appearance: none; /* убираем дефолнтные стрелочки */
+    font-family: inherit; /* наследует от родителя */
+    font-size: 1rem;
+    color: #444;
+}
+.select:after {
+    content: "";
+    display: block;
+    border-style: solid;
+    border-width: 6px 5px 0 5px;
+    border-color: #fff transparent transparent transparent;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    z-index: 1;
+    margin-top: -3px;
+}
+
+
+
+@media screen and (max-width: 720px) {
+    .select {
+        margin-bottom: 10px;;
+    }
+}

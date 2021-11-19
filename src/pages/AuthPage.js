@@ -6,12 +6,12 @@ import { AuthorizationVerification } from '../components/AuthorizationVerificati
 export const AuthPage = () => {
 
   let navigate = useNavigate();
-  const [login, setLogin] = useState('KODE');
-  const [password, setPassword] = useState('KODE');
+  const [login, setLogin] = useState('kode@kode.ru');
+  const [password, setPassword] = useState('Enk0deng');
 
   const auth = () => {
-    const loginIsCorrect = login.toLowerCase() === 'kode';
-    const passwordIsCorrect = password.toLowerCase() === 'kode';
+    const loginIsCorrect = login.toLowerCase() === 'kode@kode.ru';
+    const passwordIsCorrect = password.toLowerCase() === 'enk0deng';
     if (loginIsCorrect && passwordIsCorrect) {
       localStorage.setItem('login', login);
       localStorage.setItem('password', password);

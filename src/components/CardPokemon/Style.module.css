@@ -1,0 +1,14 @@
+.card {
+    margin: 10px !important;
+    width: 217px !important;
+}
+
+.link:hover {
+    color: #3DB4EF;
+}
+
+@media screen and (max-width: 720px) {
+    .card {
+        width: 80% !important;
+    }
+}
