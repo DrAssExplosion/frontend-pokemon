@@ -4,7 +4,7 @@ import style from './Style.module.css';
 import pokemon from 'pokemontcgsdk';
 
 
-export const LeftMenu = ({ setTypesSelect, setSubtypesSelect }) => {
+export const LeftMenu = () => {
 
     const [types, setTypes] = useState([]);
     const [subtypes, setSubtypes] = useState([]);
@@ -19,8 +19,8 @@ export const LeftMenu = ({ setTypesSelect, setSubtypesSelect }) => {
 
     return (
         <div className={style.leftMenu}>
-            <MySelect dataList={types} setTypesSelect={setTypesSelect} />
-            <MySelect dataList={subtypes} setSubtypesSelect={setSubtypesSelect} />
+            <MySelect dataList={types} type='type' />
+            <MySelect dataList={subtypes} type='subtype' />
         </div>
     );
 }

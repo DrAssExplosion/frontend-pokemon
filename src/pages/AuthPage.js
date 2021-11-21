@@ -2,19 +2,23 @@ import React, { useState } from 'react';
 import { Button, Input } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
 import { AuthorizationVerification } from '../components/AuthorizationVerification';
+import { useStoreActions } from 'easy-peasy';
 
 export const AuthPage = () => {
 
   let navigate = useNavigate();
-  const [login, setLogin] = useState('kode@kode.ru');
-  const [password, setPassword] = useState('Enk0deng');
+  const [loginInput, setLoginInput] = useState('kode@kode.ru');
+  const [passwordInput, setPasswordInput] = useState('Enk0deng');
+
+  const setLogin = useStoreActions((actions) => actions.userData.setLogin);
+  const setPassword = useStoreActions((actions) => actions.userData.setPassword);
 
   const auth = () => {
-    const loginIsCorrect = login.toLowerCase() === 'kode@kode.ru';
-    const passwordIsCorrect = password.toLowerCase() === 'enk0deng';
+    const loginIsCorrect = loginInput.toLowerCase() === 'kode@kode.ru';
+    const passwordIsCorrect = passwordInput.toLowerCase() === 'enk0deng';
     if (loginIsCorrect && passwordIsCorrect) {
-      localStorage.setItem('login', login);
-      localStorage.setItem('password', password);
+      setLogin(loginInput);
+      setPassword(passwordInput);
       navigate('/access-password');
     } else {
       alert('Логин или пароль неверны')
@@ -26,8 +30,8 @@ export const AuthPage = () => {
       <AuthorizationVerification />
       <div style={style.area}>
         <div style={style.container}>
-          <Input icon='user' size='big' iconPosition='left' placeholder='Login' value={login} onChange={e => setLogin(e.currentTarget.value)} />
-          <Input icon='lock' size='big' iconPosition='left' type='password' placeholder='Password' value={password} onChange={e => setPassword(e.currentTarget.value)} />
+          <Input icon='user' size='big' iconPosition='left' placeholder='Login' value={loginInput} onChange={e => setLoginInput(e.currentTarget.value)} />
+          <Input icon='lock' size='big' iconPosition='left' type='password' placeholder='Password' value={passwordInput} onChange={e => setPasswordInput(e.currentTarget.value)} />
           <Button circular size='massive' icon='arrow right' onClick={auth} />
         </div>
       </div>
@@ -37,8 +41,6 @@ export const AuthPage = () => {
 
 const style = {
   area: {
-    background: 'url(./../assets/background-auth.jpg)',
-    backgroundSize: 'cover',
     display: 'flex',
     height: '100vh',
     flexDirection: 'column',

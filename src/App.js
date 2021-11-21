@@ -9,20 +9,23 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { useLocation } from 'react-router';
 import "./styles.css";
 import pokemon from 'pokemontcgsdk';
+import { StoreProvider } from 'easy-peasy';
+import store from './store/store';
 
 
 function App() {
 
   const location = useLocation();
-  pokemon.configure({apiKey: 'ddd31964-6b73-4f6d-8fc4-0ac4b283516b'});
+  pokemon.configure({ apiKey: 'ddd31964-6b73-4f6d-8fc4-0ac4b283516b' });
+
 
   return (
-    <>
-      <TransitionGroup key={location.key} >
+    <StoreProvider store={store}>
+      <TransitionGroup component={null}>
         <CSSTransition key={location.key} classNames="slide" timeout={2000}>
           <Routes>
             <Route path="auth" element={<AuthPage />} />
-            <Route path="access-password" element={<AccessPasswordOTPPage />} />
+            <Route path="access-password" element={<AccessPasswordOTPPage locationKeyThis={location.key} />} />
             <Route path="pokemon-list" element={<PokemonListPage />} >
               <Route path=":page" />
             </Route>
@@ -33,7 +36,7 @@ function App() {
           </Routes>
         </CSSTransition>
       </TransitionGroup>
-    </>
+    </StoreProvider>
   );
 
 }

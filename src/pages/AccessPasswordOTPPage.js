@@ -1,38 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Button, Input } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
 import { AuthorizationVerification } from '../components/AuthorizationVerification';
+import { useStoreState, useStoreActions } from 'easy-peasy';
 
-
-export const AccessPasswordOTPPage = () => {
+export const AccessPasswordOTPPage = ({ locationKeyThis }) => {
 
   let navigate = useNavigate();
   const [code, setCode] = useState('');
   const [generateCode, setGenerateCode] = useState('');
-  const login = localStorage.getItem('login');
-  const password = localStorage.getItem('password');
+
+  const setAccessPasswordOTP = useStoreActions((actions) => actions.userData.setAccessPasswordOTP);
+  const login = useStoreState((state) => state.userData.data.login);
+  const password = useStoreState((state) => state.userData.data.password);
 
   const generateOTP = () => {
+    let codeOTP = '';
+    for (let i = 0; i < 4; i++) {
+      let num = ~~(Math.random() * 10);
+      codeOTP += num.toString();
+    }
+    setGenerateCode(codeOTP);
     setTimeout(() => {
-      let codeOTP = '';
-      for (let i = 0; i < 4; i++) {
-        let num = ~~(Math.random() * 10);
-        codeOTP += num.toString();
-      }
       alert(codeOTP);
-      setGenerateCode(codeOTP);
-    }, 1000)
+    }, 1000);
   };
 
 
   useEffect(() => {
-    if (!login && !password) return;
-    generateOTP();
+    if (login && password && locationKeyThis !== 'default') {
+      generateOTP();
+    }
   }, [])
 
   const auth = () => {
     if (code === generateCode) {
-      localStorage.setItem('accessPasswordOTP', true);
+      setAccessPasswordOTP(true);
       navigate('/pokemon-list');
     } else {
       alert('Код неверный');
@@ -42,7 +45,7 @@ export const AccessPasswordOTPPage = () => {
   return (
     <>
       <AuthorizationVerification />
-      <div style={style.area}>
+      <div style={style.area} >
         <div style={style.container}>
           <Input icon='mail' size='big' iconPosition='left' placeholder='Code from SMS' value={code} onChange={e => setCode(e.currentTarget.value)} />
           <Button circular size='massive' icon='arrow right' onClick={auth} />
@@ -50,12 +53,10 @@ export const AccessPasswordOTPPage = () => {
       </div>
     </>
   );
-}
+};
 
 const style = {
   area: {
-    background: 'url(./../assets/background-auth.jpg)',
-    backgroundSize: 'cover',
     display: 'flex',
     height: '100vh',
     flexDirection: 'column',

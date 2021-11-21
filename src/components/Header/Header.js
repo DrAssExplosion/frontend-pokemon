@@ -1,13 +1,22 @@
 import { useNavigate, useLocation } from 'react-router';
 import { Button } from 'semantic-ui-react';
 import style from './Style.module.css';
+import { useStoreActions } from 'easy-peasy';
+
+
 
 export const Header = () => {
 
     let navigate = useNavigate();
     let location = useLocation().pathname;
+    const setLogin = useStoreActions((actions) => actions.userData.setLogin);
+    const setPassword = useStoreActions((actions) => actions.userData.setPassword);
+    const setAccessPasswordOTP = useStoreActions((actions) => actions.userData.setAccessPasswordOTP);
 
     const logout = () => {
+        setLogin(null);
+        setPassword(null);
+        setAccessPasswordOTP(null);
         localStorage.clear();
         navigate('/auth');
     }

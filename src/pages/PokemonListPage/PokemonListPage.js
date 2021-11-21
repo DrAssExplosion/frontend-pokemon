@@ -9,16 +9,13 @@ import style from './Style.module.css';
 export const PokemonListPage = () => {
 
 
-  const [typeSelect, setTypesSelect] = useState(null);
-  const [subtypeSelect, setSubtypesSelect] = useState(null);
-
   return (
     <>
       <AuthorizationVerification />
       <Header />
       <div className={style.container}>
-        <LeftMenu setTypesSelect={setTypesSelect} setSubtypesSelect={setSubtypesSelect} />
-        <PokemonCardList typeSelect={typeSelect} subtypeSelect={subtypeSelect} />
+        <LeftMenu />
+        <PokemonCardList />
       </div>
     </>
   );

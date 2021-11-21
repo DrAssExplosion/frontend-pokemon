@@ -1,24 +1,21 @@
-.slide-enter,
-.slide-exit {
-  transition: transform 1000ms ease-out;
-}
-
 .slide-enter {
-  transform: translateX(100%);
+  opacity: 0;
+  transform: translate(0, 25px);
+  z-index: 1;
 }
-
 .slide-enter.slide-enter-active {
-  transform: translateX(0%);
-}
+  opacity: 1;
+  transform: translate(0, 0);
 
+  transition: opacity 250ms ease-out, transform 300ms ease;
+}
 .slide-exit {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  transform: translateX(0%);
+  opacity: 1;
+  transform: translate(0, 0);
 }
+.slide-exit.slide-exit-active {
+  opacity: 0;
+  transform: translate(0, 30px);
 
-.slide-exit-active {
-  transform: translateX(-100%);
+  transition: opacity 250ms ease-out, transform 300ms ease;
 }
