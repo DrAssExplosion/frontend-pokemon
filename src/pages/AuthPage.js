@@ -3,6 +3,7 @@ import { Button, Input } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
 import { AuthorizationVerification } from '../components/AuthorizationVerification';
 import { useStoreActions } from 'easy-peasy';
+import { motion } from 'framer-motion';
 
 export const AuthPage = () => {
 
@@ -26,7 +27,7 @@ export const AuthPage = () => {
   }
 
   return (
-    <>
+    <motion.div exit={{opacity:0}} animate={{opacity: 1}} initial={{opacity: 0}} >
       <AuthorizationVerification />
       <div style={style.area}>
         <div style={style.container}>
@@ -35,7 +36,7 @@ export const AuthPage = () => {
           <Button circular size='massive' icon='arrow right' onClick={auth}  />
         </div>
       </div>
-    </>
+    </motion.div>
   );
 }
 
