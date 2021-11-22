@@ -1,6 +1,7 @@
 .select {
     background: #941824;
-    margin-bottom: 68px;;
+    margin-bottom: 68px;
+    width: 225px;
 }
 .select select:focus-visible {
     outline-color: #69111a;

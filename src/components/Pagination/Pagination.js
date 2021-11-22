@@ -22,9 +22,9 @@ export const Pagination = () => {
         let page = +params.page || 1;
         // console.log(countPaginations);
         // console.log(currentPage);
-        const FirtLeft = currentPage - 1 >= 1 ? currentPage - 1 : currentPage;
-        const SecondLeft = currentPage - 2 >= 2 ? currentPage - 2 : currentPage;
-        const ThridLeft = currentPage - 3 >= 3 ? currentPage - 3 : currentPage;
+        const FirtLeft = currentPage - 1 >= 1 && currentPage <= countPaginations ? currentPage - 1 : currentPage;
+        const SecondLeft = currentPage - 2 >= 2 && currentPage <= countPaginations ? currentPage - 2 : currentPage;
+        const ThridLeft = currentPage - 3 >= 3 && currentPage <= countPaginations ? currentPage - 3 : currentPage;
         const FirtRight = currentPage + 1 <= countPaginations ? currentPage + 1 : countPaginations;
         const SecondRight = currentPage + 2 <= countPaginations ? currentPage + 2 : countPaginations;
         const ThridRight = currentPage + 3 <= countPaginations ? currentPage + 3 : countPaginations;
@@ -35,7 +35,7 @@ export const Pagination = () => {
         setArrPages(arrPagesT)
         // console.log(arrPagesT);
         setActiveBtn(page);
-    }, [countPaginations])
+    }, [countPaginations, currentPage])
 
 
     const goPage = (page) => {

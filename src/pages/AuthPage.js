@@ -30,9 +30,9 @@ export const AuthPage = () => {
       <AuthorizationVerification />
       <div style={style.area}>
         <div style={style.container}>
-          <Input icon='user' size='big' iconPosition='left' placeholder='Login' value={loginInput} onChange={e => setLoginInput(e.currentTarget.value)} />
-          <Input icon='lock' size='big' iconPosition='left' type='password' placeholder='Password' value={passwordInput} onChange={e => setPasswordInput(e.currentTarget.value)} />
-          <Button circular size='massive' icon='arrow right' onClick={auth} />
+          <Input icon='user' size='big' iconPosition='left' placeholder='Login' value={loginInput} onKeyPress={(event) => event.key === 'Enter' ? auth() : false} onChange={e => setLoginInput(e.currentTarget.value)} />
+          <Input icon='lock' size='big' iconPosition='left' type='password' placeholder='Password' value={passwordInput} onKeyPress={(event) => event.key === 'Enter' ? auth() : false} onChange={e => setPasswordInput(e.currentTarget.value)} />
+          <Button circular size='massive' icon='arrow right' onClick={auth}  />
         </div>
       </div>
     </>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { AuthorizationVerification } from './../../components/AuthorizationVerification';
-import { Header } from './../../components/Header/Header';
+import Header from './../../components/Header/Header';
 import style from './Style.module.css';
 import { Divider } from 'semantic-ui-react';
 import pokemon from 'pokemontcgsdk';

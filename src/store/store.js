@@ -11,6 +11,8 @@ const store = createStore({
             countPaginations: 10,
         },
         pokemonSelect: {
+            dataTypes: [],
+            dataSubtypes: [],
             type: '',
             subtype: ''
         },
@@ -31,6 +33,12 @@ const store = createStore({
         }),
         setCountPaginations: action((state, payload) => {
             state.data.countPaginations = payload;
+        }),
+        setPokemonDataSelectTypes: action((state, payload) => {
+            state.pokemonSelect.dataTypes = [...payload];
+        }),
+        setPokemonDataSelectSubtypes: action((state, payload) => {
+            state.pokemonSelect.dataSubtypes = [...payload];
         }),
         setPokemonSelectType: action((state, payload) => {
             state.pokemonSelect.type = payload;

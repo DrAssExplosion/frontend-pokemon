@@ -2,10 +2,11 @@ import { useNavigate, useLocation } from 'react-router';
 import { Button } from 'semantic-ui-react';
 import style from './Style.module.css';
 import { useStoreActions } from 'easy-peasy';
+import { memo, useEffect } from 'react';
 
 
 
-export const Header = () => {
+function Header() {
 
     let navigate = useNavigate();
     let location = useLocation().pathname;
@@ -24,6 +25,10 @@ export const Header = () => {
         navigate(-1);
     }
 
+    useEffect(() => {
+       // console.log('header')
+    }, [])
+
     return (
         <div className={style.header}>
             {
@@ -33,3 +38,9 @@ export const Header = () => {
         </div>
     );
 }
+
+export default memo(Header, ((prevProps, nextProps) => {
+    // const location = useLocation();
+    return false
+}
+));

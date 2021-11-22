@@ -1,3 +1,11 @@
+.buttonGroup {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;    
+    max-width: 400px!important;
+} 
+
+
 @media screen and (max-width: 720px) {
     .buttonGroup {
         display: flex;

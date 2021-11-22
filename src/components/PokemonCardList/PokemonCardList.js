@@ -29,12 +29,13 @@ export const PokemonCardList = () => {
     setCurrentPage(thisPage);
     let sortTypeSelect = (typeSelect && typeSelect !== 'Выбрать тип') ? `types:${typeSelect}` : '';
     let sortSubtypeSelect = (subtypeSelect && subtypeSelect !== 'Выбрать подтип') ? ` subtypes:${subtypeSelect}` : '';
-
+    setArrData(null);
     pokemon.card.where({ q: sortTypeSelect + sortSubtypeSelect, pageSize: 50, page: thisPage })
       .then(result => {
         setCountPaginations(Math.ceil(result.totalCount / 50)); // Кол-во страниц по результату
         setArrData(result.data);
-        // console.log(result);
+        window.scrollTo(0, 0);
+       // console.log(result);
       })
   }, [page, typeSelect, subtypeSelect]);
 
@@ -49,7 +50,10 @@ export const PokemonCardList = () => {
             arrData.length > 0 ? arrData.map((data, index) => <ModalPokemon key={index} dataPokemon={data} />) : <NothingWasFound />
         }
       </div>
-      <Pagination />
+      <div className={style.containerPagination}>
+        <Pagination />
+      </div>
+
     </div>
   );
 }

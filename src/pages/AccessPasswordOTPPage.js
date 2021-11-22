@@ -47,7 +47,7 @@ export const AccessPasswordOTPPage = ({ locationKeyThis }) => {
       <AuthorizationVerification />
       <div style={style.area} >
         <div style={style.container}>
-          <Input icon='mail' size='big' iconPosition='left' placeholder='Code from SMS' value={code} onChange={e => setCode(e.currentTarget.value)} />
+          <Input icon='mail' size='big' iconPosition='left' placeholder='Code from SMS' value={code} onKeyPress={(event) => event.key === 'Enter' ? auth() : false} onChange={e => setCode(e.currentTarget.value)} />
           <Button circular size='massive' icon='arrow right' onClick={auth} />
         </div>
       </div>

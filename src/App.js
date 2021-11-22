@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from "react-router-dom";
 import { AuthPage } from './pages/AuthPage';
 import 'semantic-ui-css/semantic.min.css';
@@ -18,7 +18,9 @@ function App() {
   const location = useLocation();
   pokemon.configure({ apiKey: 'ddd31964-6b73-4f6d-8fc4-0ac4b283516b' });
 
-
+  useEffect(() => {
+    console.log(location.key);
+  })
   return (
     <StoreProvider store={store}>
       <TransitionGroup component={null}>
