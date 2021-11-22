@@ -7,6 +7,7 @@ import { NothingWasFound } from './../../components/NothingWasFound/NothingWasFo
 import { Loader } from 'semantic-ui-react';
 import { ModalPokemon } from '../ModalPokemon/ModalPokemon';
 import { useStoreActions, useStoreState } from "easy-peasy";
+import { motion } from 'framer-motion';
 
 
 
@@ -39,6 +40,7 @@ export const PokemonCardList = () => {
   }, [page, typeSelect, subtypeSelect]);
 
   return (
+    <motion.div exit={{opacity:0}} animate={{opacity: 1}} initial={{opacity: 0}} >
     <div className={style.container}>
       <div className={style.cardList}>
         {
@@ -51,5 +53,6 @@ export const PokemonCardList = () => {
       </div>
       <Pagination />
     </div>
+    </motion.div>
   );
 }

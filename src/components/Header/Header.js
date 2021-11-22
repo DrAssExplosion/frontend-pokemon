@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from 'react-router';
 import { Button } from 'semantic-ui-react';
 import style from './Style.module.css';
 import { useStoreActions } from 'easy-peasy';
+import { useEffect } from 'react';
 
 
 
@@ -23,7 +24,7 @@ export const Header = () => {
     const back = () => {
         navigate(-1);
     }
-
+    
     return (
         <div className={style.header}>
             {

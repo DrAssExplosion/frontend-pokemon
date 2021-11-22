@@ -11,6 +11,7 @@ import "./styles.css";
 import pokemon from 'pokemontcgsdk';
 import { StoreProvider } from 'easy-peasy';
 import store from './store/store';
+import { AnimatePresence } from 'framer-motion';
 
 
 function App() {
@@ -21,21 +22,19 @@ function App() {
 
   return (
     <StoreProvider store={store}>
-      <TransitionGroup component={null}>
-        <CSSTransition key={location.key} classNames="slide" timeout={2000}>
-          <Routes>
-            <Route path="auth" element={<AuthPage />} />
-            <Route path="access-password" element={<AccessPasswordOTPPage locationKeyThis={location.key} />} />
-            <Route path="pokemon-list" element={<PokemonListPage />} >
-              <Route path=":page" />
-            </Route>
-            <Route path="pokemon" element={<PokemonPage />} >
-              <Route path=":page" />
-            </Route>
-            <Route path="*" element={<AuthPage />} />
-          </Routes>
-        </CSSTransition>
-      </TransitionGroup>
+      <AnimatePresence exitBeforeEnter initial={false}>
+        <Routes>
+          <Route path="auth" element={<AuthPage />} />
+          <Route path="access-password" element={<AccessPasswordOTPPage locationKeyThis={location.key} />} />
+          <Route path="pokemon-list" element={<PokemonListPage />} >
+            <Route path=":page" />
+          </Route>
+          <Route path="pokemon" element={<PokemonPage />} >
+            <Route path=":page" />
+          </Route>
+          <Route path="*" element={<AuthPage />} />
+        </Routes>
+      </AnimatePresence>
     </StoreProvider>
   );
 
