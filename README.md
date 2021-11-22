@@ -15,7 +15,7 @@
 
 ### Возникшие сложности
 
-1 - Перерендериннг страниц и компонентов после добавления анимации [react-transition-group](https://github.com/reactjs/react-transition-group).  
+1 - Перерендериннг страниц и компонентов после добавления анимации [react-transition-group](https://github.com/reactjs/react-transition-group). (Исправил проблему использовав [framer-motion](https://www.framer.com/motion/)).  
 
 ### Задачи со звёздочкой
 
